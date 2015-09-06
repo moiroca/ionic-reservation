@@ -1,0 +1,37 @@
+<ion-view ng-controller='SearchBookController'>
+	<ion-content>
+		<div class="row">
+		  <div class="col">
+		  		<div class="bar bar-header item-input-inset">
+					<label class="item-input-wrapper">
+					    <i class="icon ion-ios-search placeholder-icon"></i>
+						<input ng-model='bookName'  id='bookName' type="search" placeholder="Search Book">
+					</label>
+					<button ng-click='searchBookByName()' class="button button-small">
+				      Search
+				    </button>
+				</div>
+		  </div>
+		</div>
+		<div class="row" ng-controller='ReservationController'>
+			<div class="col">
+				<div class="card">
+					<div class="item item-divider">
+					 	Searched Book Result
+					</div>
+					<div class="item item-text-wrap">
+						<ion-list>
+					    	<label ng-repeat='book in searchBooks | filter:bookName' class="item item-button-right">
+							    <h2>{{ book.name }}</h2>
+					    		<p>{{ book.author }}</p>
+							    <button class="icon-left ion-ios-eye-outline button button-small button-calm" ng-click='reserveBook(book)'>
+							    	<p>Reserve</p>
+							    </button>
+						  	</label>
+						</ion-list>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
