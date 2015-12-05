@@ -7,7 +7,7 @@ Reservation
 	.service('UserService',[function() {
 
 		this.getToken = function() {
-			if(typeof(window.localStorage) != 'undefined'){ return window.localStorage.getItem('userToken'); } 
+			if(typeof(window.localStorage) != 'undefined') { return window.localStorage.getItem('userToken'); } 
 			else { throw "window.localStorage, not defined"; }
 		};
 
@@ -41,4 +41,10 @@ Reservation
 			else { throw "window.localStorage, not defined"; }
 		}
 
+		this.removeStorage = function() {
+			if (typeof(window.localStorage) != 'undefined') {  window.localStorage. clear() ; } 
+			else { throw "window.localStorage, not defined"; }
+		}
+
+		this
 	}]);

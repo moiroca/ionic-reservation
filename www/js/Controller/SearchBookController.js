@@ -3,8 +3,19 @@ Reservation
 	.controller('SearchBookController', [
 		'$scope', 
 		'BookRepository', 
-		'$http', 
-		function($scope, $bookRepository, $http) {
+		'$ionicPopup',
+		'BookReservationService',
+		'$ionicPopup',
+		'$location',
+		'UserService',
+		function(
+			$scope, 
+			$bookRepository, 
+			$ionicPopup,
+			$bookReservationService, 
+			$ionicPopup, 
+			$location, 
+			$userService) {
 
 		$scope.searchBooks = [];
 		
@@ -12,22 +23,42 @@ Reservation
 
 			var bookName = document.getElementById('bookName').value;
 
-			$http({
-			    url: 'http://localhost/test/books.php', 
-			    method: "GET",
-			    params: { name : bookName }
-			 }).success(function(data) {
-			 	$scope.searchBooks = data;
-			 });
+			$bookRepository.searchByName({ bookName: bookName}, function(data) {
+				
+				if (data.length != 0) {
+					$scope.searchBooks = data;
+				} else {
+					$ionicPopup.alert({
+							       	title: 'Search Result',
+							       	template: 'There is no matching book!'
+							    });
+				};
+			});
 		};
 
 		$scope.reserveBook = function(book) {
-			$http({
-			    url: 'http://localhost/test/books.php', 
-			    method: "POST",
-			    params: { book : book }
-			 }).success(function(data) {
-			 	$scope.searchBooks = data;
-			 });
+					
+			var data = { book_id : book.id , user_id : $userService.getId() };
+
+			$bookReservationService.reserve(data, function(data) {
+
+				if (data.isReservationExceeded) {
+					$ionicPopup.alert({
+						       	title: 'Process Result',
+						       	template: 'You have already exceed allowed maximum number.'
+						    });
+				} else if (data.bookAlreadyReserved) {
+					$ionicPopup.alert({
+						       	title: 'Process Result',
+						       	template: 'Book Already Reserved!'
+						    });
+				} else {
+					$ionicPopup.alert({
+						       	title: 'Process Result',
+						       	template: 'Book Reservation Success'
+							});
+					$location.path('/reserve');
+				}
+			});
 		};
 	}]);

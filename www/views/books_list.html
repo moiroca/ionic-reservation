@@ -1,0 +1,25 @@
+<ion-view ng-controller='BookController'>
+	<ion-content>
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="item item-divider">
+						<button class="button button-block button-positive" ng-click='list()'>
+							View Books
+						</button>
+					</div>
+					<div class="item item-text-wrap">
+						<ion-list>
+					    	<label ng-repeat='book in books' class="item item-button-right">
+					    		<input type='hidden' value="{{ book.id }}"/>
+							    <h2>{{ book.name }}</h2>
+					    		<p>{{ book.author }}</p>
+						  	</label>
+						  	<div ng-hide="books.length">No Book found.</div>
+						</ion-list>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

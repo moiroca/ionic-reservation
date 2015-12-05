@@ -8,7 +8,7 @@ Reservation
 			.state('/', {
 				url: '',
 				templateUrl: 'views/home.html',
-				controller: 'HomeController'
+				controller: 'DashboardController'
 			})
 			.state('dashboard', {
 				url: '/dashboard',
@@ -16,6 +16,7 @@ Reservation
 				controller: 'DashboardController'
 			})
 			.state('reserve', {
+				cache : false,
 				url: '/reserve',
 				templateUrl: 'views/reservedbooks.html',
 				controller: 'ReservationController'
@@ -25,9 +26,13 @@ Reservation
 				templateUrl : 'views/search.html',
 				controller : 'SearchBookController'
 			})
-			.state('login', {
-				url: '/login',
-				templateUrl : 'views/login.html',
-				controller: 'LoginController'
+			.state('landing-page-books', {
+				url: '/landing-page-books',
+				templateUrl : 'views/landing_page_books.html'
+			})
+			.state('view-all-books', {
+				url : '/view-all-books',
+				templateUrl : 'views/books_list.html',
+				controller : 'BookController'
 			});
 	});

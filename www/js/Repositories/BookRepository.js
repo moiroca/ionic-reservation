@@ -1,28 +1,27 @@
 Reservation
-	.factory('BookRepository', ['$http', function($http) {
+	.factory('BookRepository', ['$http', 'UserService', function($http, $userService) {
 
 		var BookRepository = { };
 
 		BookRepository.reservedBooks = { };
 
-		BookRepository.searchByName = function(data) {	
+		BookRepository.searchByName = function(data, callback) {	
 			$http({
-			    url: 'http://localhost/test/books.php', 
+			    url: 'http://192.168.1.99/reservation/books.php', 
 			    method: "GET",
 			    params: { name : data.bookName }
 			 }).success(function(data) {
-			 	return data;
+			 	callback(data);
 			 });
 		};
 
-		BookRepository.getReservedBooks = function(userToken, ctrlGetReservedBooks) {
-
+		BookRepository.getReservedBooks = function(user_id, callback) {
 			$http({
 			    url: 'http://192.168.1.99/reservation/reservedBooks.php', 
 			    method: "GET",
-			    params: { userToken : userToken }
+			    params: { user_id : $userService.getId() }
 			}).success(function(data) {
-				ctrlGetReservedBooks(data);
+				callback(data);
 			});
 		};
 

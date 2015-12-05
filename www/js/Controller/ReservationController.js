@@ -5,36 +5,27 @@
 Reservation
 		.controller('ReservationController', [
 			'$scope', 
-			'$http', 
-			'BookService', 
 			'UserService',
 			'BookRepository',
-			'BookReservationService',
 			'$q',
-			function($scope, $http, $bookService, $userService, $bookRepo, $bookReservationService, $q) {
+			function(
+				$scope, 
+				$userService, 
+				$bookRepo,
+				$q) {
 
 				var defer = $q.defer();
-
+				
 				defer.promise
 					.then(function() {
-						var getReservedBooks = function(data) {
-							$scope.books = data;
-						};
-						$bookRepo.getReservedBooks($userService.getName(), getReservedBooks);
-					}
-				);
+						$scope.user = { name : $userService.getName() };
+						$bookRepo.getReservedBooks($userService.getId(), function(data) { $scope.books = data; });
+					});
 
 				defer.resolve();
-
-				$scope.reserveBook = function(book) {
-
-					var reserveBook = function(response) {
-						console.log(response);
-						//$scope.books = data;
-					};
-					var data = { book_id : book.id , user_id : $userService.getId() };
-
-					$bookReservationService.reserve(data, reserveBook);
+				
+				$scope.getReservedBooks = function() {
+					$bookRepo.getReservedBooks($userService.getId(), function(data) { $scope.books = data; });
 				};
 			}
 		]);

@@ -1,26 +1,24 @@
-<ion-view ng-controller='ReservationController' ng-init='getReservedBooks()'>
+<ion-view ng-controller='ReservationController' >
 	<ion-content>
 		<div class="row">
 			<div class="col">
 
 				<div class="card">
 					<div class="item item-divider">
-				    	<div class="item-content">
-				    		{{ user.name }} Reserved Books
-				    	</div>
+				    	<button class="button button-block button-positive" ng-click='getReservedBooks()'>
+							View {{ user.name }} Reserved Books
+						</button>
 					</div>
 					<div class="item item-text-wrap">
+
 					    <ion-list>
-					    	<label ng-repeat='book in books' class="item item-input item-select">
+					    	<label ng-repeat='book in books' class="item item-input">
 							    <div class="input-label">
 							      <h2>{{ book.name }}</h2>
 					    			<p>{{ book.author }}</p>
 							    </div>
-							    <select>
-							      <option> View Details </option>
-							      <option selected>Reserve</option>
-							    </select>
 						  	</label>
+							<div ng-hide="books.length">No reserved books found.</div>
 						</ion-list>
 				  	</div>
 				</div>

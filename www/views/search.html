@@ -13,7 +13,7 @@
 				</div>
 		  </div>
 		</div>
-		<div class="row" ng-controller='ReservationController'>
+		<div class="row">
 			<div class="col">
 				<div class="card">
 					<div class="item item-divider">
@@ -22,12 +22,14 @@
 					<div class="item item-text-wrap">
 						<ion-list>
 					    	<label ng-repeat='book in searchBooks | filter:bookName' class="item item-button-right">
+					    		<input type='hidden' value="{{ book.id }}"/>
 							    <h2>{{ book.name }}</h2>
 					    		<p>{{ book.author }}</p>
-							    <button class="icon-left ion-ios-eye-outline button button-small button-calm" ng-click='reserveBook(book)'>
+							    <button class="button button-small button-calm button-clear" ng-click='reserveBook(book)'>
 							    	<p>Reserve</p>
 							    </button>
 						  	</label>
+						  	<div ng-hide="searchBooks.length">No searched book found.</div>
 						</ion-list>
 				  	</div>
 				</div>
