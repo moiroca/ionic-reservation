@@ -4,7 +4,10 @@
  */
 
 Reservation
-	.service('UserService',[function() {
+	.service('UserService',[
+		'$http',
+		'$rootScope',
+		function($http, $rootScope) {
 
 		this.getToken = function() {
 			if(typeof(window.localStorage) != 'undefined') { return window.localStorage.getItem('userToken'); } 
@@ -46,5 +49,18 @@ Reservation
 			else { throw "window.localStorage, not defined"; }
 		}
 
-		this
+		this.changePassword = function(user, callback) {
+
+			$http({
+				method : 'POST',
+				url: $rootScope.domainName + "changePassword.php",
+				data: {
+			        oldPassword: user.oldPassword,
+			        newPassword: user.newPassword
+			    },
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+			}).success(function(result){
+				callback(result);
+			});
+		}	
 	}]);
