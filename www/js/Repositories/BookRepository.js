@@ -1,5 +1,5 @@
 Reservation
-	.factory('BookRepository', ['$http', 'UserService', function($http, $userService) {
+	.factory('BookRepository', ['$http', 'UserService', '$rootScope', function($http, $userService, $rootScope) {
 
 		var BookRepository = { };
 
@@ -7,7 +7,7 @@ Reservation
 
 		BookRepository.searchByName = function(data, callback) {	
 			$http({
-			    url: 'http://192.168.1.99/reservation/books.php', 
+			    url: $rootScope.domainName + 'books.php', 
 			    method: "GET",
 			    params: { name : data.bookName }
 			 }).success(function(data) {
@@ -17,7 +17,7 @@ Reservation
 
 		BookRepository.getReservedBooks = function(user_id, callback) {
 			$http({
-			    url: 'http://192.168.1.99/reservation/reservedBooks.php', 
+			    url: $rootScope.domainName + 'reservedBooks.php', 
 			    method: "GET",
 			    params: { user_id : $userService.getId() }
 			}).success(function(data) {

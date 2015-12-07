@@ -7,11 +7,12 @@
  Reservation
  	.service('LoginService', [
  			'$http', 
- 			function($http) {
+ 			'$rootScope',
+ 			function($http, $rootScope) {
 		 		this.attempt = function(user, callback) {
 		 			$http({
 						method : 'POST',
-						url: "http://localhost/reservation/login.php",
+						url: $rootScope.domainName + "login.php",
 						data: {
 					        username: user.username,
 					        password: user.password

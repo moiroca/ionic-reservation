@@ -1,10 +1,10 @@
 //Book Service
 Reservation
-	.service('BookService', ['$http', function($http) {
+	.service('BookService', ['$http', '$rootScope', function($http, $rootScope) {
 
 		this.searchByName = function(data) {	
 			$http({
-			    url: 'http://localhost/reservation/books.php', 
+			    url: $rootScope + 'books.php', 
 			    method: "GET",
 			    params: { name : data.bookName }
 			 }).success(function(data) {
@@ -14,7 +14,7 @@ Reservation
 
 		this.getAllBooks = function(callback) {
 			$http({
-			    url: 'http://localhost/reservation/allbooks.php', 
+			    url: $rootScope + 'allbooks.php', 
 			    method: "GET",
 			 }).success(function(data) {
 			 	callback(data);

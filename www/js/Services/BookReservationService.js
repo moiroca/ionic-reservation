@@ -1,11 +1,11 @@
 //Book Reservation
 Reservation
-	.service('BookReservationService', ['$http', function($http) {
+	.service('BookReservationService', ['$http', '$rootScope', function($http, $rootScope) {
 
 		this.reserve = function(data, callback) {
 			$http({
 				method : 'POST',
-				url: "http://localhost/reservation/reserve.php",
+				url: $rootScope.domainName + "reserve.php",
 				data: {
 					book_id : data.book_id,
 					user_id :  data.user_id
