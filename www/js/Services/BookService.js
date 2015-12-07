@@ -4,7 +4,7 @@ Reservation
 
 		this.searchByName = function(data) {	
 			$http({
-			    url: $rootScope + 'books.php', 
+			    url: $rootScope.domainName + 'books.php', 
 			    method: "GET",
 			    params: { name : data.bookName }
 			 }).success(function(data) {
@@ -14,7 +14,7 @@ Reservation
 
 		this.getAllBooks = function(callback) {
 			$http({
-			    url: $rootScope + 'allbooks.php', 
+			    url: $rootScope.domainName + 'allbooks.php', 
 			    method: "GET",
 			 }).success(function(data) {
 			 	callback(data);
