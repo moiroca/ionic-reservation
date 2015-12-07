@@ -34,5 +34,10 @@ Reservation
 				url : '/view-all-books',
 				templateUrl : 'views/books_list.html',
 				controller : 'BookController'
+			})
+			.state('change-password', {
+				url: '/change-password',
+				templateUrl: 'views/change_password.html',
+				controller: 'UserController'
 			});
 	});
