@@ -56,7 +56,8 @@ Reservation
 				url: $rootScope.domainName + "changePassword.php",
 				data: {
 			        oldPassword: user.oldPassword,
-			        newPassword: user.newPassword
+			        newPassword: user.newPassword,
+			        userId: this.getId()
 			    },
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 			}).success(function(result){

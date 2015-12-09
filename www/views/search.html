@@ -22,6 +22,7 @@
 					<div class="item item-text-wrap">
 						<ion-list>
 					    	<label ng-repeat='book in searchBooks | filter:bookName' class="item item-button-right">
+					    		<img width=100 height 100 src="{{ portal }}addbook/getme/{{ book.info }}" />
 					    		<input type='hidden' value="{{ book.id }}"/>
 							    <h2>{{ book.name }}</h2>
 					    		<p>{{ book.author }}</p>

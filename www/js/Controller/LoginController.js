@@ -13,6 +13,11 @@ Reservation
  			'$ionicPopup',
  			function($scope, $loginService, $userService, $location, $ionicPopup) {
 	 		
+	 		$scope.user = {
+	 			username : '',
+	 			password: ''
+	 		};
+	 		
 	 		$scope.login = function(user) {
 	 			if (user != null) {
 	 				$loginService.attempt(user, function(user) {

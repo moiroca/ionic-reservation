@@ -11,9 +11,17 @@
 					<div class="item item-text-wrap">
 						<ion-list>
 					    	<label ng-repeat='book in books' class="item item-button-right">
+					    		<img width=100 height 100 src="{{ portal }}addbook/getme/{{ book.info }}" />
 					    		<input type='hidden' value="{{ book.id }}"/>
 							    <h2>{{ book.name }}</h2>
 					    		<p>{{ book.author }}</p>
+					    		<p>
+					    			<i>Copies: <b>{{ book.copies }}</b></i>
+					    			<i>Available: <b>{{ book.available }}</b></i>
+					    		</p>
+					    		<button ng-disabled="book.available == 0" class="button button-small button-calm button-clear" ng-click='reserveBook(book)'>
+							    	<p>Reserve</p>
+							    </button>
 						  	</label>
 						  	<div ng-hide="books.length">No Book found.</div>
 						</ion-list>

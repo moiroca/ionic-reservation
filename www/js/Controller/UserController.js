@@ -38,7 +38,7 @@ Reservation
 						return false;
 					}
 
-					if (data.success) { 
+					if (data.changePasswordSuccess) { 
 						UserService.removeStorage();
 						$location.path("/");
 					}

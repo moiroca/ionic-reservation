@@ -17,5 +17,7 @@ var Reservation = angular.module('Reservation', ['ionic'])
     }
   });
 
-  $rootScope.domainName = 'http://localhost/reservation/';
+  $rootScope.domainName = 'http://192.168.8.100/reservation/';
+  $rootScope.portal = 'http://192.168.8.100/mvc/';
 })
+
